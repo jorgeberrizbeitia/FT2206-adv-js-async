@@ -143,3 +143,110 @@ console.log(favColor)
 // quiero destructurar el segundo hobby
 const { other: { about: { hobbies: [, hobby2] } } } = personObj
 console.log(hobby2)
+
+
+
+// OPERADOR SPREAD (...)
+
+const myArr = ["hola", "que tal", "adios"]
+
+console.log(myArr)
+console.log(...myArr) // los elementos esparcidos
+
+const someNumbers = [2, 5, 10, 20]
+
+console.log( Math.max(...someNumbers) )
+console.log( Math.min(...someNumbers) )
+
+
+const students = ["Miguel", "Rebeca", "Ivan", "Paula"]
+const teachers = ["Caro", "Jorge"]
+
+
+const everyone = [...students, "Manu", ...teachers, "adrian", "Jose", "Malva"]
+
+console.log(everyone)
+
+
+
+const newNumbers = [2, 5, 10, 20]
+
+// const newNumbersCopy = JSON.parse(JSON.stringify(newNumbers)) // deep clone
+const newNumbersCopy = [...newNumbers] // shallow clone
+
+newNumbersCopy.reverse()
+
+console.log(newNumbersCopy)
+console.log("original", newNumbers)
+
+
+
+const somePeople = [
+  {
+    name: "Caro",
+    candy: 1000
+  },
+  {
+    name: "Paula",
+    candy: 500
+  },
+  {
+    name: "Ivan",
+    candy: 200
+  },
+]
+
+// const somePeopleClone = [...somePeople] // shallow clone
+const somePeopleClone = JSON.parse(JSON.stringify(somePeople)) // deep clone
+// deep clone clone TODAS las referencias de objetos internos
+// shallow clone solo crea una nueva referencia de la primera dimension de la data
+
+somePeopleClone.pop()
+
+console.log("original", somePeople)
+console.log("clone", somePeopleClone)
+
+somePeopleClone[1].candy = 2000
+
+console.log("original", somePeople)
+console.log("clone", somePeopleClone)
+
+const recipe = {
+  name: "Dulce de leche",
+  calories: 10000
+}
+
+// spread en objetos para clonar
+const recipeClone = {...recipe}
+console.log("clone", recipeClone)
+
+// Operador REST (...) => el resto de los elementos
+
+const hobbies = ["surfear", "cocinar", "jugar", "codear"]
+
+
+
+const [firstHobby, ...restOfHobbies] = hobbies
+
+console.log(firstHobby)
+console.log(restOfHobbies)
+
+
+// Math.max()
+
+const checkIfTen = (...allNumbers) => {
+  console.log(allNumbers)
+  // quiero que me des el resto de los argumentos
+  const sum = allNumbers.reduce((acc, elem) => {
+    return acc + elem
+  }, 0)
+  if (sum === 10) {
+    return "es exactamente 10!"
+  } else {
+    return "no es 10 :("
+  }
+}
+
+console.log( checkIfTen(5, 2, 3) )
+console.log( checkIfTen(5, 2, 2, 1, 8) )
+
